@@ -1,0 +1,243 @@
+from datetime import datetime
+import time
+import os
+import math
+import uuid
+import random
+
+
+class dateoption:
+    def current1(self):
+        current = datetime.now()
+        print("Current date and time:", current.strftime("%Y-%m-%d %H:%M:%S"))
+
+    def diff(self):
+        try:
+            d1 = input("Enter the First Date (YYYY-MM-DD): ")
+            d2 = input("Enter the Second Date (YYYY-MM-DD): ")
+            date1 = datetime.strptime(d1, "%Y-%m-%d")
+            date2 = datetime.strptime(d2, "%Y-%m-%d")
+            diff = date1 - date2
+            print("Difference:", diff.days, "days")
+        except Exception as e:
+            print("Invalid date format! Please use YYYY-MM-DD")
+
+    def change_format(self):
+        try:
+            d_str = input("Enter a Date (YYYY-MM-DD): ")
+            f_str = input("Enter a Format (e.g., %d/%m/%Y): ")
+            dt = datetime.strptime(d_str, "%Y-%m-%d")
+            print("Formatted Date:", dt.strftime(f_str))
+        except ValueError:
+            print("Invalid Date or Format!")
+    
+    def stopwatch(self):
+        print("Press ENTER to start the stopwatch")
+        print("Press ENTER again to stop it")
+        input("Ready? ")
+        start_time = time.time()
+        input("Running... Press ENTER to stop")
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Elapsed Time: {elapsed_time:.2f} seconds")
+        
+class mathss:
+    
+    def fact(self):
+        try:
+            f = int(input("Enter number for Factorial:"))
+            print("Factorial: ", math.factorial(f))
+        except:
+            print("ivalid format")
+    def ci(self):
+        try:
+            p = float(input("Enter principal amount : "))
+            r = float(input("Enter rate of Interest (%) : "))
+            t = float(input("Enter time (in years) : "))
+            amt = p * ((1 + r / 100) ** t)
+            ci = amt - p
+            print("interest amount:",ci)
+            print("Compound Interest:",amt)
+            
+        except:
+            print("format error")
+class random_data:
+    def rn(self):
+        try:
+            start = int(input("Enter the start number:"))
+            end = int(input("enter the end number:"))
+            print("Random Number:",random.randint(start,end))
+        except:
+            print("inalid integer")
+    def rl(self):
+        try:
+            size = int(input("Enter the size of the list: "))
+            start = int(input("Enter the starting number: "))
+            end = int(input("Enter the ending number: "))
+            random_list = [random.randint(start, end) for _ in range(size)]
+            print("Random List:", random_list)
+        except:
+            print("invalid")
+    def rp(self):
+        try:
+            length = int(input("Enter password length: "))
+            uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            lowercase = "abcdefghijklmnopqrstuvwxyz"
+            digits = "0123456789"
+            symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?/"
+            characters = uppercase + lowercase + digits + symbols
+            password = ""
+            for i in range(length):
+                password += random.choice(characters)
+            print("Generated Password:", password)
+        except ValueError:
+            print("invalid")
+    def otp(self):
+            length = int(input("Enter OTP length: "))
+            otp = ""
+            for i in range(length):
+                otp += str(random.randint(0, 9))
+            print("Your OTP is:", otp)
+class fileoperations:
+    def new(Self):
+        try:
+            name = input("Enter a file name:")
+            open(name,"w").close()
+            print("File created successfully")
+        except:
+            print("error occurred")
+    def w(self):
+        try:
+            name = input("Enter the file name : ")
+            data = input("Enter the data to write : ")
+            with open(name, "w") as f:
+                f.write(data)
+            print("Data Written Successfully!")
+        except:
+            print("Error occured!")
+    def re(self):
+        try:
+            filename = input("Enter the file name: ")
+            with open(filename, "r") as f:
+                content = f.read()
+                print("\n--- File Content ---")
+                print(content)
+        except FileNotFoundError:
+            print("file not found !!!")
+    def ad(self):
+        try:
+            name = input("Enter file name: ")
+            data = input("Enter data to append: ")
+            with open(name, "a") as f:
+                f.write("\n" + data)
+            print("Data appended successfully!\n")
+        except:
+            print("Something went wrong while appending to the file.")
+dt = dateoption()    
+while True:
+    print("\n==============================")
+    print("Welcome To Multi-Utility ToolKit")
+    print("Choose an option : ")
+    print("1. Datetime and Time Operations.")
+    print("2. Mathematical Operations.")
+    print("3. Random Data Generation.")
+    print("4. Generate Unique Identifiers.")
+    print("5. File Operations Custom Module.")
+    print("6. Explore Module Attributes (dir()).")
+    print("7. Exit.")
+    print("==============================")
+
+    choice = int(input("Enter Your Choice : "))
+    if choice == 1:
+        print("\nDateTime and Time Operations : ")
+        print("1. Display current date and time.")
+        print("2. Calculate difference between two dates and time.")
+        print("3. Formate date into custom format.")
+        print("4. Stopwatch.")
+        print("5. Countdown timer.")
+        print("6. Back To Main Menu.")
+
+        choice = int(input("\nEnter Your Choice : "))
+        if choice== 1:
+            dt.current1()
+        elif choice == 2:
+            dt.diff()
+        elif choice == 3:
+            dt.change_format()
+        elif choice == 4:
+            dt.stopwatch()
+        elif choice == 5:
+            break
+        
+    elif choice == 2:
+        mf = mathss()
+        print("\n Mathematical Operation : ")
+        print("1. Calculate Factorial")
+        print("2. Solve compound interest")
+        print("3. Back to main menu")
+        
+        choice = int(input("\n Enyter your choice :"))
+        if choice == 1:
+            mf.fact()
+        elif choice == 2:
+            mf.ci()
+        elif choice == 3:
+            break
+    elif choice==3:
+        r = random_data()
+        print("\n Random Data Genreation")
+        print("1. Genrate Random Number")
+        print("2. Genrate Random List")
+        print("3. Create Random Password")
+        print("4. Generate Random OTP ")
+        print("5. Back to Main Menu")
+        
+        choice = int(input("\n Enter your choice : "))
+        if choice == 1:
+            r.rn()
+        elif choice == 2:
+            r.rl()
+        elif choice == 3:
+            r.rp()
+        elif choice ==4:
+            r.otp()
+        elif choice ==5:
+            break
+    elif choice == 4:
+        print("\nGenerate Unique Identifier (UUID):")
+        print("Generated UUID:", uuid.uuid4(), "\n")
+
+    elif choice == 5:
+        f = fileoperations()
+        print("\File Operations:")
+        print("1. Create a new File")
+        print("2. Write to a File")
+        print("3. read form a File")
+        print("4. Append to a file")
+        print("5. Back to main menu")
+        
+        choice = int(input("\n Enter your choice : "))
+        
+        if choice == 1:
+            f.new()
+        elif choice == 2:
+            f.w()
+        elif choice == 3:
+            f.re()
+        elif choice == 4:
+            f.ad()
+        elif choice == 5:
+            break
+    elif choice == 6:
+            mod = input("Enter module name to explore: ")
+            try:
+                m = _import_(mod)
+                print(f"\nAttributes of {mod}:")
+                print(dir(m))
+            except:
+                print("Module not found!")
+    elif choice == 7:
+        print("Exiting.. Multi-Utility Toolkit!")
+        break
+    else :
+        print("invalid choice")
